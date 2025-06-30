@@ -1,0 +1,40 @@
+<%# File created by Yuxi Lin %>
+<%# Step 5: Contact Information for a listing %>
+<div class="row">
+  <!-- Sidebar Column -->
+  <div class="col-md-3">
+    <%= render 'listings/sidebar' %>
+  </div>
+
+  <!-- Form Column -->
+  <div class="col-md-9">
+    <h2>Step 5: Contact Information</h2>
+    <%= form_with(model: @listing, url: save_step5_listing_path(@listing), method: :post) do |form| %>
+      
+      <div class="form-group">
+        <%= form.label :contact_first_name, "First name of the person the renter will communicate with." %>
+        <%= form.text_field :contact_first_name, class: "form-control", placeholder: "Enter your first name" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :contact_last_name, "Last name of the person the renter will communicate with." %>
+        <%= form.text_field :contact_last_name, class: "form-control", placeholder: "Enter your last name" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :contact_email, "Email" %>
+        <%= form.email_field :contact_email, class: "form-control", placeholder: "Enter your email address" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :contact_phone, "Phone Number" %>
+        <%= form.telephone_field :contact_phone, class: "form-control", placeholder: "Enter your phone number" %>
+      </div>
+
+      <br>
+      <%# Submit buttons %>
+      <%= link_to '<i class="bi bi-arrow-bar-left"></i> Go Back'.html_safe, :back, class: "generic-button" %>
+      <%= button_tag '<i class="bi bi-rocket"></i> Post the property'.html_safe, name: 'next', type: 'submit', class: 'new-button' %>
+    <% end %>
+  </div>
+</div>

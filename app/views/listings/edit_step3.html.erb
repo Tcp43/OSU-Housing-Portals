@@ -1,0 +1,33 @@
+<%# File created 11/29/2024 by Yuxi Lin %>
+<%# Edit the Property info of a listing %>
+<div class="row">
+  <!-- Sidebar Column -->
+  <div class="col-md-3">
+    <%= render 'listings/sidebar' %>
+  </div>
+
+  <!-- Form Column -->
+  <div class="col-md-9">
+    <h2>Step 3: Pricing</h2>
+    <%= form_with(model: @listing, url: save_step3_listing_path(@listing), method: :post) do |form| %>
+      <div class="form-group">
+        <!-- Monthly Rent and Security Deposit -->
+        <div class="form-group">
+            <%= form.label "Monthly Rent" %>
+            <%= form.number_field :rent_price, class: "form-control", step: "0.01", min: "0", placeholder: "Enter monthly rent" %>
+        </div>
+
+        <div class="form-group">
+            <%= form.label "Security Deposit" %>
+            <%= form.number_field :security_deposit, class: "form-control", step: "0.01", min: "0", placeholder: "Enter security deposit" %>
+        </div>
+      </div>
+
+      <br>
+      <%# Submit buttons %>
+      <%= link_to '<i class="bi bi-arrow-bar-left"></i> Go Back'.html_safe, :back, class: "generic-button" %>
+      <%= button_tag '<i class="bi bi-save"></i> Save and Exit'.html_safe, name: 'exit', type: 'submit', class: 'generic-button' %>
+      <%= button_tag '<i class="bi bi-arrow-right-square"></i> Save and Next'.html_safe, name: 'next', type: 'submit', class: 'new-button' %>
+    <% end %>
+  </div>
+</div>

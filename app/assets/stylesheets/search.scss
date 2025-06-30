@@ -1,0 +1,69 @@
+/* Created by Kathir Maarikarthykeyan 11/27/2024 */
+
+$top_bot_button_padding: 8px;
+$side_button_padding: 14px;
+
+// Styling for filter/search bar container
+.filter-bar {
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+// Styling for search bar/button 
+.search-bar {
+    border: 1px solid #333; 
+    border-radius: 20px;        
+    padding: $top_bot_button_padding $side_button_padding;  
+    width: 250px;
+}
+
+.search-button {
+    border: 2px solid green;
+    border-radius: 20px;
+    padding: $top_bot_button_padding $side_button_padding;
+}
+
+.filter-button {
+    border: 1px solid #333; 
+    border-radius: 20px;        
+    padding: $top_bot_button_padding $side_button_padding;  
+}
+
+.dropdown-menu {
+    width: 200px;
+}
+
+.container-fluid {
+    gap: 20px;
+}
+
+.listing-card-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to wrap to the next row if they don't fit */
+    gap: 3rem;       /* Adds space between cards */
+    justify-content: start; /* Align cards to the start (can be changed to 'center', 'space-between', etc.) */
+    margin: 1rem 0;
+  }
+  .listing-card {
+    flex: 1 1 calc(18rem + 1rem); /* Ensures cards are equal size */
+    max-width: 18rem;
+    border: 1px solid #333;
+    border-radius: 14px;
+    overflow: hidden; /* Ensures rounded corners apply to the image */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card-img {
+    width: 100%; /* Ensures the image spans the full width of the card */
+    height: 125px; /* Sets a fixed height for the image */
+    object-fit: cover; /* Ensures the image is cropped to fit the container without distortion */
+  }
+  
+  .card-body {
+    padding: 0.75rem;
+  }
+  
+  .listing-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }

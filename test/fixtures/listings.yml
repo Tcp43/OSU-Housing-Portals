@@ -1,0 +1,67 @@
+one:
+  id: 1
+  address: "123 Main St"
+  unit: "Apt 1A"
+  city: "Columbus"
+  state: "OH"
+  zip: "43210"
+  property_type: "Apartment"
+  bedroom: 2
+  bathroom: 1
+  description: "A cozy two-bedroom apartment near the university."
+  rent_price: 1200.00
+  available: "2024-12-15"
+  landlord_id: 2
+  security_deposit: 500.00
+  name: "Sunny Apartment"
+  square_footage: 800.00
+  move_in_date: "2024-12-20"
+  lease_terms: "12 months"
+  pet_friendly: true
+  amenities: "Pool, Gym, Parking"
+  contact_first_name: "John"
+  contact_last_name: "Doe"
+  contact_email: "johndoe@example.com"
+  contact_phone: "555-123-4567"
+  status: "posted"
+  in_unit_washer_dryer: true
+  air_conditioning: true
+  utilities_included: false
+  dishwasher: true
+  parking: true
+  furnished: true
+  has_cover_image: true
+
+two:
+  id: 2
+  address: "456 Elm St"
+  unit: "Suite 203"
+  city: "Cleveland"
+  state: "OH"
+  zip: "44114"
+  property_type: "House"
+  bedroom: 7
+  bathroom: 4
+  description: "Spacious three-bedroom condo with modern amenities."
+  rent_price: 2000.00
+  available: "2024-12-01"
+  landlord_id: 3
+  security_deposit: 1000.00
+  name: "Modern Condo"
+  square_footage: 1200.00
+  move_in_date: "2024-12-05"
+  lease_terms: "6 months"
+  pet_friendly: false
+  amenities: "Gym, Parking, Rooftop"
+  contact_first_name: "Jane"
+  contact_last_name: "Smith"
+  contact_email: "janesmith@example.com"
+  contact_phone: "555-987-6543"
+  status: "draft"
+  in_unit_washer_dryer: false
+  air_conditioning: true
+  utilities_included: true
+  dishwasher: false
+  parking: false
+  furnished: false
+  has_cover_image: false

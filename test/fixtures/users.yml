@@ -1,0 +1,35 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+student1:
+  id: 1
+  name: 'Student One'
+  email: 'test.1@osu.edu'
+  encrypted_password: <%= Devise::Encryptor.digest(User, ENV['TEST_PASSWORD']) %>
+  confirmed_at: <%= Time.zone.now - 1.hour %>
+  confirmation_sent_at: <%= Time.zone.now - 2.hours %>
+  role: student
+
+landlord1:
+  id: 2
+  name: 'Landlord One'
+  email: 'test.2@osu.edu'
+  encrypted_password: <%= Devise::Encryptor.digest(User, ENV['TEST_PASSWORD']) %>
+  confirmed_at: <%= Time.zone.now - 1.hour %>
+  confirmation_sent_at: <%= Time.zone.now - 2.hours %>
+  role: landlord
+
+landlord2:
+  id: 3
+  name: "John Landlord"
+  email: "john.landlord@example.com"
+  role: "landlord"
+  encrypted_password: <%= BCrypt::Password.create('password123') %>
+  confirmed_at: "2024-12-01 10:00:00"
+
+admin:
+  id: 4
+  name: "Admin User"
+  email: "admin@example.com"
+  role: "admin"
+  encrypted_password: <%= BCrypt::Password.create('adminpassword') %>
+  confirmed_at: "2024-12-01 10:00:00"

@@ -1,0 +1,71 @@
+<%# File created 11/29/2024 by Yuxi Lin %>
+<%# Edit the Address info of a listing %>
+<div class="row">
+  <!-- Sidebar Column -->
+  <div class="col-md-3">
+    <%= render 'listings/sidebar' %>
+  </div>
+
+  <!-- Form Column -->
+  <div class="col-md-9">
+    <h2>Step 1: Address</h2>
+    <%= form_with(model: @listing, url: save_step1_listing_path(@listing), method: :post) do |form| %>
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control" %>
+
+        <%= form.label "Street Address" %>
+        <%= form.text_field :address, class: "form-control" %>
+
+        <%= form.label "Unit (optional)" %>
+        <%= form.text_field :unit, class: "form-control" %>
+
+        <%= form.label :city %>
+        <%= form.text_field :city, class: "form-control" %>
+
+        <%= form.label :state %>
+        <div class="input-group">
+          <%= form.select :state, 
+              options_for_select([
+                ['Michigan', 'MI'], ['Indiana', 'IN'], ['Kentucky', 'KY'], 
+                ['West Virginia', 'WV'], ['Pennsylvania', 'PA'], 
+                ['Ohio', 'OH'], ['Illinois', 'IL'], ['Wisconsin', 'WI']
+              ], 'OH'),
+              {}, 
+              class: "form-control"
+          %>
+        </div>
+
+        <%= form.label :zip %>
+        <%= form.text_field :zip, class: "form-control" %>
+
+        <%= form.label :property_type, "Property Type" %>
+        <%= form.select :property_type, 
+            options_for_select([
+              ['Apartment', 'Apartment'], 
+              ['House', 'House'], 
+              ['Condo', 'Condo'], 
+              ['Townhouse', 'Townhouse'], 
+              ['Duplex', 'Duplex'], 
+              ['Studio', 'Studio'], 
+              ['Loft', 'Loft'], 
+              ['Room for Rent', 'Room for Rent'], 
+              ['Mobile Home', 'Mobile Home'], 
+              ['Vacation Rental', 'Vacation Rental'], 
+              ['Cottage', 'Cottage'], 
+              ['Farmhouse', 'Farmhouse'], 
+              ['Penthouse', 'Penthouse']
+            ]), 
+            {}, 
+            class: "form-control" 
+        %>
+      </div>
+
+      <br>
+      <%# Submit buttons %>
+      <%= link_to '<i class="bi bi-arrow-bar-left"></i> Go Back'.html_safe, :back, class: "generic-button" %>
+      <%= button_tag '<i class="bi bi-save"></i> Save and Exit'.html_safe, name: 'exit', type: 'submit', class: 'generic-button' %>
+      <%= button_tag '<i class="bi bi-arrow-right-square"></i> Save and Next'.html_safe, name: 'next', type: 'submit', class: 'new-button' %>
+    <% end %>
+  </div>
+</div>

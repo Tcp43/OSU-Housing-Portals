@@ -1,0 +1,26 @@
+<%# File created 11/20/2024 by Troy Paschal: Displays landlord profile-page %>
+<%# Edited 12/3/2024 by Koury Harmon: Removed contact information and added description %>
+<div class="profile-page">
+  <div class="container">
+    <header>
+      <h1>Welcome, <%= @user.name %>!</h1>
+    </header>
+    <section>
+      <h2>Your Listings</h2>
+      <div>
+      <% if @listings && @listings.any? %>
+        <% @listings.each do |listing| %>
+          <div class="listing panel panel-default">
+            <div class="panel-body">
+              <%= render listing %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p>You have no listings.</p>
+      <% end %>
+      </div>
+    </section>
+    <%= button_to '<i class="bi bi-plus-square"></i> Add Listing'.html_safe, new_listing_path, method: :get, class: "new-button" %>
+  </div>
+</div>

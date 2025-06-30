@@ -1,0 +1,27 @@
+<%# Created 11/20/2024 by Koury Harmon %>
+<%# Edited 11/24/2024 by Koury Harmon: add dynamic listings %>
+<%# Edited 11/28/2024 by Troy Paschal: add buttons for favorites and Unfavorite listing %>
+<% content_for :title, "Listings" %>
+<h1>Listings</h1>
+<div class="container">
+  <div class="panel-group">
+    <div id="listings">
+      <% @listings.each do |listing| %>
+        <div class="panel panel-primary">
+          <div class="panel-body">
+            <%= render listing %>
+            <div class="text-end mt-2">
+              <% if user_signed_in? %>
+                <% if current_user.favorites.exists?(listing_id: listing.id) %>
+                  <%= button_to "Unfavorite", listing_favorite_path(listing, current_user.favorites.find_by(listing_id: listing.id)), method: :delete, class: " btn-danger listing-button" %>
+                <% else %>
+                  <%= button_to "Favorite", listing_favorites_path(listing), method: :post, class: "btn-primary listing-button" %>
+                <% end %>
+              <% end %>
+            </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>

@@ -1,0 +1,58 @@
+// File created 12/4/2024 by Yuxi Lin
+// Style in posting a listing form
+
+.custom-file-upload {
+    margin-bottom: 20px;
+    position: relative;
+  
+    .form-label {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 8px;
+      display: block;
+    }
+  
+    .custom-file-input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      color: #6c757d;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      background-color: #f8f9fa;
+      cursor: pointer;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  
+      &:hover {
+        border-color: #007bff;
+      }
+  
+      &:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        outline: none;
+      }
+    }
+  
+    .custom-file-preview {
+      margin-top: 15px;
+  
+      p {
+        font-size: 14px;
+        color: #6c757d;
+      }
+  
+      .img-preview {
+        display: block;
+        margin-top: 10px;
+        max-width: 100%;
+        max-height: 150px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+  

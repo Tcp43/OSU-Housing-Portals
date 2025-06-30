@@ -1,0 +1,163 @@
+<%# Created 11/29/2024 by Koury Harmon: Page to show detailed info about an individual listing %>
+<%# Edited 11/30/2024 by Koury Harmon: Added favorite functionality %>
+<%# Edited 12/3/2024 by Koury Harmon: Reformat spacing between cards %>
+<%# Edited 12/3/2024 by Koury Harmon: Added two additional informational cards and removed picture modal (sqlite cant handle multiple pictures) %>
+<%# Edited 12/3/2024 by Yuxi Lin: Change style and layout %>
+<% provide(:title, @listing.address)%>
+<div class="p-4 card text-center bg-light">
+
+  <!-- Top Buttons: Edit and Back to Listings -->
+  <div class="d-flex justify-content-between mb-3">
+    <%= link_to '<i class="bi bi-arrow-bar-left"></i> Go Back'.html_safe, :back, class: "generic-button" %>
+    <!-- Favorite/Unfavorite Listing -->
+    <% if current_user.id != @listing.landlord_id && (current_user.role == 'student' || current_user.role == 'admin')%>
+      <% if current_user.favorites.exists?(listing_id: @listing.id) %>
+        <%= button_to '<i class="bi bi-star-fill"></i>'.html_safe, listing_favorite_path(@listing, current_user.favorites.find_by(listing_id: @listing.id)), method: :delete, class: "delete-button listing-button" %>
+      <% else %>
+        <%= button_to '<i class="bi bi-star"></i>'.html_safe, listing_favorites_path(@listing), method: :post, class: "delete-button listing-button" %>
+      <% end %>
+    <% end%>
+    <%= link_to '<i class="bi bi-search"></i> Go to search page'.html_safe, student_search_path, class: 'generic-button' %>
+    <% if current_user.id == @listing.landlord_id %>
+      <!-- Resume Listing if in Draft Status -->
+      <% if @listing.status == 'draft' %>
+        <%= link_to 'Resume', edit_step1_listing_path(@listing), class: 'modify-button' %>
+      <% end %>
+      <!-- Edit Listing Button -->
+      <%= link_to 'Edit this listing', edit_listing_path(@listing), class: 'modify-button' %>
+    <% end %>
+  </div>
+<%# Picture and Info row %>
+  <h2 class="card-title"><%= @listing.address %></h2>
+  <div class="row">
+    <div class="col-6 d-flex align-items-stretch">
+      <div class="p-1 mb-1 card text-center w-100">
+        <% if @listing.cover_image.attached? %>
+        <%= image_tag @listing.cover_image, class: "img-fluid", alt: "Listing Image" %>
+        <% else %>
+          <p>No image uploaded for this listing.</p>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-6 d-flex align-items-stretch">
+      <div class="p-4 mb-1 card text-center w-100">
+        <h3 class="card-title">At a Glance</h3>
+        <hr />
+        <p><%= @listing.description %></p>
+        <hr />
+        <ul class="list-unstyled">
+          <li><strong>Landlord:</strong> <%= @listing.user.name %></li>
+          <li><strong>Email:</strong> <%= @listing.user.email %></li>
+          <%= button_to "<i class='bi bi-chat-dots'></i> Send Message to #{@listing.user.name}".html_safe, 
+              conversations_path(recipient_id: @listing.landlord_id), 
+              method: :post, 
+              class: 'generic-button mt-2' %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <%# Facts and Amenities row %>
+  <div class="row">
+    <div class="col-6 d-flex align-items-stretch">
+      <div class="p-4 mb-1 card text-center w-100">
+        <h4 class = "card-title">The Facts</h4>
+        <!-- Button trigger modal -->
+        <button type="button" class="generic-button" data-bs-toggle="modal" data-bs-target="#details">
+          View more details
+        </button>
+        <hr />
+        <p><strong>Price:</strong> $<%= @listing.rent_price.to_i %></p>
+        <p><strong>Bedrooms:</strong> <%= @listing.bedroom %></p>
+        <p><strong>Bathrooms:</strong> <%= @listing.bathroom %></p>
+        <p><strong>Property Type:</strong> <%= @listing.property_type %></p>
+        <%if @listing.square_footage.present?%>
+          <p><strong>Square Footage:</strong> <%= @listing.square_footage.to_i %> sq ft</p>
+        <%end%>
+        <p><strong>Security Deposit:</strong> $<%= @listing.security_deposit.to_i %></p>
+        <%if current_user.id == @listing.landlord_id || current_user.role != 'student'%>
+          <p><strong>Status:</strong> <%= @listing.status %></p>
+          <%if @listing.status == 'posted'%>
+            <p class="text-success">Students can see this property.</p>
+          <% else %> 
+            <p class="text-muted">This Property is not visible to students.</p> 
+          <%end%>
+        <%end%>  
+      </div>
+    </div>
+    <div class="col-6 d-flex align-items-stretch">
+      <div class="p-4 mb-1 card text-center w-100">
+        <h4 class = "card-title">Amenities</h4>
+        <hr />
+          <%if @listing.pet_friendly?%>
+            <p><span class = "badge bg-success">&#x2714;</span> Pet Friendly</p>
+          <%end%>
+          <%if @listing.in_unit_washer_dryer?%>
+            <p><span class = "badge bg-success">&#x2714;</span> In-Unit Washer and Dryer</p>
+          <%end%>
+          <%if @listing.air_conditioning?%>
+            <p><span class = "badge bg-success">&#x2714;</span> Air Conditioning</p>
+          <%end%>
+          <%if @listing.utilities_included?%>
+            <p><span class = "badge bg-success">&#x2714;</span> Utilities Included</p>
+          <%end%>
+          <%if @listing.furnished?%>
+            <p><span class = "badge bg-success">&#x2714;</span> Fully Furnished</p>
+          <%end%>
+          <%if @listing.dishwasher?%>
+            <p><span class = "badge bg-success">&#x2714;</span> Dishwasher</p>
+          <%end%>
+          <%if @listing.parking?%>
+            <p><span class = "badge bg-success">&#x2714;</span> Parking Included</p>
+          <%end%>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Buttons: Destroy, Post/Unpost -->
+  <div class="d-flex justify-content-center gap-2">
+    <% if current_user.id == @listing.landlord_id || current_user.role == 'admin' || current_user.role == 'manager'%>
+      <!-- Toggle Status Button -->
+      <%= button_to '<i class="bi bi-toggle-on"></i> Post / UnPost'.html_safe, 
+        toggle_status_listing_path(@listing), 
+        method: :patch, 
+        class: "modify-button", 
+        data: { turbo_confirm: "Are you sure you want to switch the status of this listing?" } %> 
+        
+      <!-- Delete Listing Button -->
+      <%= button_to '<i class="bi bi-trash"></i> Delete this listing'.html_safe, @listing, 
+        method: :delete, 
+        class: "delete-button", 
+        data: { turbo_confirm: "Are you sure you want to delete this listing?" } %>
+    <% end %>
+
+    <!-- Modal -->
+    <div class="modal fade" id="details" tabindex="-1" aria-labelledby="detailsLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="detailsLabel"><%= @listing.name %></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>City:</strong> <%= @listing.city %></p>
+            <p><strong>State:</strong> <%= @listing.state %></p>
+            <% if @listing.unit.present? %>
+              <p><strong>Unit:</strong> <%= @listing.unit %></p>
+            <% end %>
+            <p><strong>ZIP:</strong> <%= @listing.zip %></p>
+            <% if @listing.square_footage.present? %>
+              <p><strong>Square Footage:</strong> <%= @listing.square_footage.to_i %> sq ft</p>
+            <% end %>
+            <p><strong>Move-In Date:</strong> <%= @listing.move_in_date.strftime("%m-%d-%Y") %></p>
+            <p><strong>Lease Terms:</strong> <%= @listing.lease_terms %></p>
+            <p><strong>Availability:</strong> <%= @listing.available %></p>
+            <p><strong>Person to Contact:</strong> <%= @listing.contact_first_name %> <%= @listing.contact_last_name %> <br> <%= @listing.contact_email %>, <%= @listing.contact_phone %></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="generic-button" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

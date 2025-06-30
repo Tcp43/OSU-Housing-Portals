@@ -1,0 +1,51 @@
+address,bedroom,bathroom,description,rent_price,available,landlord_id
+"85 E 18th Ave, Columbus, OH 43201",1,1,no description,1375,Yes,2
+"1996 Iuka Ave, Columbus, OH 43201",7,4,no description,8000,Yes,3
+"1944-1946 N High St, Columbus, OH 43201",3,3,no description,2900,Yes,4
+"10 E 17th Ave, Columbus, OH 43201",1,1,no description,949,Yes,2
+"107-121 E 14th Ave #107-C, Columbus, OH 43201",4,2,no description,2600,Yes,3
+"169 Chittenden Ave APT B, Columbus, OH 43201",2,1,no description,1100,Yes,4
+"171 Chittenden Ave, Columbus, OH 43201",4,2,no description,1950,Yes,2
+"1731 Summit St, Columbus, OH 43201",4,2,no description,3100,Yes,3
+"186 Chittenden Ave, Columbus, OH 43201",5,2,no description,2995,Yes,4
+"55 W Oakland Ave, Columbus, OH 43201",3,1,no description,2310,Yes,2
+"217 E Northwood Ave, Columbus, OH 43201",5,2,no description,4000,Yes,3
+"29 E Northwood Ave, Columbus, OH 43201",5,2,no description,5000,Yes,4
+"131 E Oakland Ave, Columbus, OH 43201",5,2,no description,2900,Yes,2
+"55 E Norwich Ave APT A, Columbus, OH 43201",3,1,no description,1500,Yes,3
+"89 E Patterson Ave, Columbus, OH 43202",3,1,no description,2085,Yes,4
+"2091 Iuka Ave, Columbus, OH 43201",1,1,no description,895,Yes,2
+"2256 Indiana Ave, Columbus, OH 43202",3,2,no description,1995,Yes,3
+"220 E Oakland Ave, Columbus, OH 43201",3,1,no description,1650,Yes,4
+"2160 Indianola Ave, Columbus, OH 43201",3,1,no description,2145,Yes,2
+"14-20 W Norwich Ave #18, Columbus, OH 43201",2,1,no description,1300,Yes,3
+"52 E Norwich Ave, Columbus, OH 43201",4,2,no description,3300,Yes,4
+"2300 Indianola Ave, Columbus, OH 43202",5,2,no description,2850,Yes,2
+"86 E Norwich Ave, Columbus, OH 43201",2,1,no description,1295,Yes,3
+"2353 1/2 N High St, Columbus, OH 43202",3,1,no description,1770,Yes,4
+"2357 N High St, Columbus, OH 43202",1,1,no description,965,Yes,2
+"280 E Oakland Ave, Columbus, OH 43202",3,1,no description,2195,Yes,3
+"207 E Lane Ave, Columbus, OH 43201",8,3,no description,5295,Yes,4
+"246-248 E Patterson Ave, Columbus, OH 43202",6,4,no description,4800,Yes,2
+"2139 Summit St, Columbus, OH 43201",5,2,no description,2995,Yes,3
+"259 E Lane Ave, Columbus, OH 43201",5,2,no description,2600,Yes,4
+"215-217 E Maynard Ave, Columbus, OH 43202",3,1,no description,1200,Yes,2
+"248 E Patterson Ave, Columbus, OH 43202",3,2,no description,2400,Yes,3
+"251 E Oakland Ave, Columbus, OH 43201",5,2,no description,3500,Yes,4
+"42 W Norwich Ave, Columbus, OH 43201",2,1,no description,1350,Yes,2
+"2276 Indiana Ave, Columbus, OH 43202",4,1,no description,2195,Yes,3
+"176 E Patterson Ave, Columbus, OH 43202",4,2,no description,2200,Yes,4
+"65 E Patterson Ave, Columbus, OH 43202",5,3,no description,2295,Yes,2
+"138 E Oakland Ave, Columbus, OH, 43201",5,3,no description,3250,Yes,3
+"2250 Indianola Ave, Columbus, OH 43202",6,2,no description,4200,Yes,4
+"2233 Summit St #B, Columbus, OH 43201",4,2,no description,1550,Yes,2
+"2254 Indianola Ave, Columbus, OH 43202",9,4,no description,4750,Yes,3
+"33 W Patterson Ave, Columbus, OH 43202",4,2,no description,3000,Yes,4
+"48 W Norwich Ave, Columbus, OH 43201",4,2,no description,3200,Yes,2
+"45 E Patterson Ave, Columbus, OH 43202",2,1,no description,1100,Yes,3
+"38 W Oakland Ave, Columbus, OH 43201",5,2,no description,4000,Yes,4
+"2103 Summit St, Columbus, OH 43201",4,3,no description,3000,Yes,2
+"56 E Oakland Ave, Columbus, OH 43201",5,2,no description,3400,Yes,3
+"53 E Northwood Ave, Columbus, OH 43201",5,2,no description,4000,Yes,4
+"75 E Oakland Ave, Columbus, OH 43201",6,3,no description,4800,Yes,2
+"68 E Patterson Ave, Columbus, OH 43202",5,2,no description,2600,Yes,3

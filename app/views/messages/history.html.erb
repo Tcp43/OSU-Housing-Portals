@@ -1,0 +1,32 @@
+<%# File created 11/24 by Troy Paschal:Show Chat history %>
+<h1>Chats</h1>
+
+<h2>Received Messages</h2>
+<% if @received_messages.any? %>
+  <ul>
+    <% @received_messages.each do |message| %>
+      <li>
+        <strong>From:</strong> <%= message.sender.name %><br>
+        <strong>Message:</strong> <%= message.body %><br>
+        <small><%= message.created_at.strftime("%b %d, %Y %H:%M") %></small>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No messages received.</p>
+<% end %>
+
+<h2>Sent Messages</h2>
+<% if @sent_messages.any? %>
+  <ul>
+    <% @sent_messages.each do |message| %>
+      <li>
+        <strong>To:</strong> <%= message.receiver.name %><br>
+        <strong>Message:</strong> <%= message.body %><br>
+        <small><%= message.created_at.strftime("%b %d, %Y %H:%M") %></small>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No messages sent.</p>
+<% end %>

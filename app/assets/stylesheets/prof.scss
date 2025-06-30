@@ -1,0 +1,152 @@
+/*Created:11/20/2024 by Troy Paschal: Styling for profile pages*/
+/*Edited: 11/28/2024 by Troy Paschal: Styling for favorite and unfavorite button*/
+.profile-page {
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      font-family: 'Arial', sans-serif;
+    }
+  
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+  
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+  
+      h1 {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #444;
+      }
+  
+      p {
+        font-size: 1.2em;
+        color: #777;
+      }
+    }
+  
+    section {
+      margin-bottom: 30px;
+  
+      h2 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        color: #555;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+      }
+  
+      p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 10px;
+      }
+  
+      ul {
+        list-style: none;
+        padding: 0;
+  
+        li {
+          background-color: #f8f8f8;
+          padding: 10px;
+          border: 1px solid #ddd;
+          margin-bottom: 10px;
+          border-radius: 4px;
+  
+          &:hover {
+            background-color: #f1f1f1;
+          }
+        }
+      }
+    }
+  
+    .contact-info {
+      background-color: #f7faff;
+      border: 1px solid #dfeaff;
+      padding: 15px;
+      border-radius: 5px;
+  
+      p {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+    }
+  
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #aaa;
+      margin-top: 20px;
+  
+      a {
+        color: #888;
+        text-decoration: none;
+  
+        &:hover {
+          color: #444;
+        }
+      }
+    }
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+
+  /* Buttons for Listings Page */
+.listing-button {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #c82333;
+  }
+}
+
+.btn-primary {
+  background-color: #00b7f9;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}

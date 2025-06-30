@@ -1,0 +1,20 @@
+<%# File created 11/24 by Troy Paschal:Display updated chat after sending messages%>
+<h1>Send a Message</h1>
+
+<%= form_with model: @message, url: user_messages_path(@user), local: true do |form| %>
+  <div>
+    <%= form.label :receiver_id, 'Send to:' %>
+    <%= form.collection_select :receiver_id, @users, :id, :name, prompt: 'Select a user', class: 'form-control' %>
+  </div>
+  <div>
+    <%= form.label :body, 'Message:' %>
+    <%= form.text_area :body, class: 'form-control', rows: 4 %>
+  </div>
+  <div>
+    <%= form.submit 'Send Message', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+  <div>
+    <%= link_to 'Back to Messages', history_messages_path, class: 'btn btn-secondary' %>
+  </div>

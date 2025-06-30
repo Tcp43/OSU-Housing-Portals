@@ -1,0 +1,142 @@
+// File created 12/1/2024 by Yuxi Lin
+// Session control pages
+body {
+    &.sessions.new, &.registrations.new {
+        margin: 0;
+        background-image: url('/assets/Snowy-Mint_1.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        color: #333;
+    }
+}
+.session-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #8e5e39;
+    margin-bottom: 10px;
+}
+.subheading {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.session-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two-column layout */
+    gap: 20px;
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 16px;
+
+        .form-label {
+        font-family: 'Arial', sans-serif;
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 5px;
+        }
+
+        .form-input {
+        padding: 10px;
+        font-size: 1rem;
+        border: none;
+        border-bottom: 1px solid #000000;
+        background: none;
+
+        &:focus {
+            outline: none;
+            border-bottom: 1px solid #774d2d;
+        }
+        }
+        .password-hint {
+        font-size: 12px;
+        color: #888;
+        margin-top: 4px;
+        }
+    }
+}
+
+.session-button {
+    background-color: white;
+    border: 1px solid #4d6657;
+    color: black;
+    font-size: 16px;
+    padding: 13px 35px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-size: 200% 100%;
+    transition: background-position 0.6s ease, color 0.6s ease;
+
+    &:hover {
+        background-position: center;
+        background-image: url('/assets/Flare.jpg');
+        color: white;
+    }
+}
+
+.form-links {
+    margin-top: 20px;
+    text-align: center;
+    a {
+        font-family: 'Open Sans', sans-serif;
+        color: #325c46;
+        text-decoration: none;
+        font-size: 0.9rem;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.form-actions {
+    margin-top: 20px;
+}
+
+.error_explanation {
+    grid-column: span 2;
+    background-color: #ffefef;
+    border: 1px solid #e0a3a3;
+    color: #d9534f;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-family: 'Arial', sans-serif;
+
+    h2 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin: 0 0 10px; /* Add spacing below the heading */
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none; /* Removes default bullet points */
+
+        li {
+        font-size: 1rem;
+        margin-bottom: 5px;
+        padding-left: 20px;
+        position: relative;
+
+        &::before {
+            content: "⚠"; /* Unicode warning icon */
+            position: absolute;
+            left: 0;
+            color: #d9534f;
+            font-size: 1.2rem;
+            line-height: 1rem;
+        }
+        }
+    }
+}
+  

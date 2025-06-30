@@ -1,0 +1,102 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+// Edited 11/27 by Koury Harmon: added bootstrap 5 capabilities
+@import "bootstrap";
+
+body {
+  padding-top: 80px;
+  background-color:rgb(199, 157, 157)
+}
+
+// Created 11/18 by Koury Harmon: nav style
+// Edited 12/4 by Yuxi Lin: change style
+.navbar-brand {
+  font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+}
+#logo {
+  &:hover{
+    color: red;
+    text-decoration: none;
+  }
+}
+
+// Create 12/4/2024 by Yuxi Lin
+// Button with different color and hover style
+@mixin button-style($color) {
+  background-color: $color;
+  border: 1px solid $color;
+  color: white;
+  font-size: 16px;
+  padding: 13px 35px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  height: 45px;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid $color;
+    background-color: white;
+    color: $color;
+  }
+}
+.generic-button {@include button-style(black);}
+.new-button {@include button-style(green);}
+.modify-button {@include button-style(rgb(213, 168, 4));}
+.info-button {@include button-style(#1E90FF);}
+
+.delete-button {
+  background-color: white;
+  border: 1px solid red;
+  color: red;
+  font-size: 16px;
+  padding: 13px 35px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  height: 45px;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+  }
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+/* typography */
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}

@@ -1,0 +1,28 @@
+<%# File created 11/20/2024 by Troy Paschal:Displays student profile-page%>
+<%# Edited 11/28/2024 by Troy Paschal: add buttons for Unfavorite listing %>
+<%# Edited 12/3/2024 by Koury Harmon: Removed contact information %>
+<div class="profile-page">
+  <div class="container">
+    <header>
+      <h1>Welcome, <%= @user.name %>!</h1>
+    </header>
+    <section>
+      <h2>Your Favorite Apartments</h2>
+  <% if @favorites && @favorites.any? %>
+    <div class="favorite-listings">
+      <% @favorites.each do |favorite| %>
+        <% listing = favorite.listing %>
+        <div class="listing panel panel-default">
+          <div class="panel-body">
+            <%= render listing %>
+            <div class="text-end mb-5">
+              <%= button_to '<i class="bi bi-star-fill"></i>'.html_safe, listing_favorite_path(listing), method: :delete, class: "delete-button listing-button" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>You have no favorite apartments.</p>
+  <% end %>
+  </section>

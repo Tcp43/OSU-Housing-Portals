@@ -1,0 +1,11 @@
+<%# File created 11/24 by Troy Paschal:Start a new chat%>
+
+<h1>Start a New Chat</h1>
+
+<%= form_with url: conversations_path, method: :post, local: true do |form| %>
+  <div>
+    <%= form.label :recipient_id, "Select a User" %>
+    <%= form.collection_select :recipient_id, @users, :id, :name, prompt: "Choose a user" %>
+  </div>
+  <%= form.submit "Start Conversation", class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,41 @@
+<%# File created 11/30/2024 by Yuxi Lin %>
+<%# Edit the Property info of a listing %>
+<div class="row">
+  <!-- Sidebar Column -->
+  <div class="col-md-3">
+    <%= render 'listings/sidebar' %>
+  </div>
+
+  <!-- Form Column -->
+  <div class="col-md-9">
+    <h2>Step 4: Lease</h2>
+    <%= form_with(model: @listing, url: save_step4_listing_path(@listing), method: :post) do |form| %>
+      
+      <!-- Property Availability -->
+      <div class="form-group">
+        <%= form.label "When is the property available?" %>
+        <%= form.date_field :move_in_date, class: "form-control", placeholder: "Select the first date the renter may move in" %>
+      </div>
+
+      <!-- Lease Terms -->
+      <div class="form-group">
+        <%= form.label "What are the terms of your lease?" %>
+        <%= form.select :lease_terms, options_for_select([['Month-to-month', 'month_to_month'], ['1 month', '1 month'], ['6 months', '6 months'], ['12 months', '12 months'], ['24 months', '24 months']], @listing.lease_terms), { include_blank: "Select lease term" }, class: "form-control" %>
+
+      </div>
+
+      <!-- Do You Allow Pets? -->
+      <div class="form-group">
+        <%= form.label "Do you allow pets?" %>
+        <%= form.radio_button :pet_friendly, true %> Yes
+        <%= form.radio_button :pet_friendly, false %> No
+      </div>
+
+      <br>
+      <%# Submit buttons %>
+      <%= link_to '<i class="bi bi-arrow-bar-left"></i> Go Back'.html_safe, :back, class: "generic-button" %>
+      <%= button_tag '<i class="bi bi-save"></i> Save and Exit'.html_safe, name: 'exit', type: 'submit', class: 'generic-button' %>
+      <%= button_tag '<i class="bi bi-arrow-right-square"></i> Save and Next'.html_safe, name: 'next', type: 'submit', class: 'new-button' %>
+    <% end %>
+  </div>
+</div>

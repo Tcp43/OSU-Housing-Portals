@@ -1,0 +1,292 @@
+<!-- Created by Kathir Maarikarthykeyan 11/22/24: Search functionality for house options -->
+<!-- Edited by Kathir Maarikarthykeyan 11/24/24: Add buttons and filters for bedrooms and bathrooms and rent -->
+<!-- Edited by Kathir Maarikarthykeyan 11/28/24: Refactored all code from raw CSS to bootstrap -->
+<!-- Edited by Kathir Maarikarthykeyan 12/2/24: Make filters persistent -->
+<!-- Edited by Kathir Maarikarthykeyan 12/4/24: Add page navigation -->
+
+<% provide(:title, "Student House Search") %>
+<%= stylesheet_link_tag 'search', media: 'all' %>
+
+
+<!-- Nav bar for filters and search bar -->
+<nav class="navbar filter-bar">
+  <div class="container-fluid">
+    <!-- Flexbox container for search bar and filters -->
+    <div class="d-flex align-items-center gap-4">
+      <!-- Search bar for addresses or location -->
+      <form class="d-flex" role="search" method="get" action="/student_search">
+        <% params.except(:search).each do |key, value| %>
+          <% if value.is_a?(Array) %>
+            <% value.each do |v| %>
+              <input type="hidden" name="<%= key %>[]" value="<%= v %>">
+            <% end %>
+          <% else %>
+            <input type="hidden" name="<%= key %>" value="<%= value %>">
+          <% end %>
+        <% end %>
+        <input class="form-control me-2 search-bar" type="search" name="search" value="<%= params[:search] %>" placeholder="Search for address..." aria-label="Search">
+        <button class="btn btn-outline-success search-button" type="submit">Search</button>
+      </form>
+      <div class="dropdown" id="beds">
+        <!-- Dropdown Button for beds-->
+        <button class="info-button dropdown-toggle filter-button" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Bedrooms
+        </button>
+        <!-- Dropdown Menu with Form -->
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li>
+            <form class="px-4 py-3" method="get" action="/student_search">
+              <!-- Preserve existing parameters -->
+              <% params.except(:bedroom).each do |key, value| %>
+                <% if value.is_a?(Array) %>
+                  <% value.each do |v| %>
+                    <input type="hidden" name="<%= key %>[]" value="<%= v %>">
+                  <% end %>
+                <% else %>
+                  <input type="hidden" name="<%= key %>" value="<%= value %>">
+                <% end %>
+              <% end %>
+
+              <% bedroom_options = { '1' => 'One Bedroom', '2' => 'Two Bedrooms', '3' => 'Three Bedrooms', '4' => 'Four Bedrooms', '5+' => 'Five or More Bedrooms' } %>
+              <% bedroom_options.each do |bed_number, label| %>
+                <div class="form-check">
+                  <input class="form-check-input" 
+                        type="checkbox" 
+                        name="bedroom[]" 
+                        value="<%= bed_number %>" 
+                        id="<%= bed_number %>_bed" 
+                        <%= 'checked' if params[:bedroom]&.include?(bed_number) %>>
+                  <label class="form-check-label" for="<%= bed_number %>_bed">
+                    <%= label %>
+                  </label>
+                </div>
+              <% end %>
+              
+              <button type="submit" class="generic-button mt-3">Submit</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+      <!-- Dropdown Button for baths-->
+      <div class="dropdown" id="baths">
+        <button class="info-button dropdown-toggle filter-button" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Bathrooms
+        </button>
+        <!-- Dropdown Menu with Form -->
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li>
+            <form class="px-4 py-3" method="get" action="/student_search">
+              <!-- Preserve existing parameters -->
+              <% params.except(:bathroom).each do |key, value| %>
+                <% if value.is_a?(Array) %>
+                  <% value.each do |v| %>
+                    <input type="hidden" name="<%= key %>[]" value="<%= v %>">
+                  <% end %>
+                <% else %>
+                  <input type="hidden" name="<%= key %>" value="<%= value %>">
+                <% end %>
+              <% end %>
+
+              <% bathroom_options = { '1' => 'One Bathroom', '2' => 'Two Bathrooms', '3' => 'Three Bathrooms', '4+' => 'Four or More Bathrooms' } %>
+              <% bathroom_options.each do |bath_number, label| %>
+                <div class="form-check">
+                  <input class="form-check-input" 
+                        type="checkbox" 
+                        name="bathroom[]" 
+                        value="<%= bath_number %>" 
+                        id="<%= bath_number %>_bath" 
+                        <%= 'checked' if params[:bathroom]&.include?(bath_number) %>>
+                  <label class="form-check-label" for="<%= bath_number %>_bath">
+                    <%= label %>
+                  </label>
+                </div>
+              <% end %>
+
+              <button type="submit" class="generic-button mt-3">Submit</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+      <!-- Dropdown Button for listing type-->
+      <div class="dropdown" id="listing-type">
+        <button class="info-button dropdown-toggle filter-button" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Listing Type
+        </button>
+        <!-- Dropdown Menu with Form -->
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li>
+            <form class="px-4 py-3" method="get" action="/student_search">
+              <!-- Preserve existing parameters -->
+              <% params.except(:property_type).each do |key, value| %>
+                <% if value.is_a?(Array) %>
+                  <% value.each do |v| %>
+                    <input type="hidden" name="<%= key %>[]" value="<%= v %>">
+                  <% end %>
+                <% else %>
+                  <input type="hidden" name="<%= key %>" value="<%= value %>">
+                <% end %>
+              <% end %>
+              
+              <!-- Listing Type Options -->
+              <% property_types = ["House", "Apartment", "Townhome", "Other"] %>
+              <% property_types.each do |type| %>
+                <div class="form-check">
+                  <input class="form-check-input" 
+                        type="checkbox" 
+                        name="property_type[]" 
+                        value="<%= type %>" 
+                        id="<%= type.downcase %>" 
+                        <%= 'checked' if params[:property_type]&.include?(type) %>>
+                  <label class="form-check-label" for="<%= type.downcase %>">
+                    <%= type %>
+                  </label>
+                </div>
+              <% end %>
+
+              <button type="submit" class="generic-button mt-3">Submit</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+      <!-- Price drop down button -->
+      <div class="dropdown" id="pricing">
+        <button type="button" class="info-button dropdown-toggle filter-button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+          Pricing/Rent
+        </button>
+        <form class="dropdown-menu p-4" method="get" action="/student_search">
+          <!-- Persistent filters for pricing -->
+          <% params.except(:min_rent, :max_rent).each do |key, value| %>
+            <% if value.is_a?(Array) %>
+              <% value.each do |v| %>
+                <input type="hidden" name="<%= key %>[]" value="<%= v %>">
+              <% end %>
+            <% else %>
+              <input type="hidden" name="<%= key %>" value="<%= value %>">
+            <% end %>
+          <% end %>
+          <div class="mb-3">
+            <label for="min-rent" class="form-label">Min Rent</label>
+            <input type="number" class="form-control" name="min_rent" id="min-rent" placeholder="Min Rent" value="<%= params[:min_rent] %>">
+          </div>
+          <div class="mb-3">
+            <label for="max-rent" class="form-label">Max Rent</label>
+            <input type="number" class="form-control" name="max_rent" id="max-rent" placeholder="Max Rent" value="<%= params[:max_rent] %>">
+          </div>
+          <button type="submit" class="generic-button">Enter</button>
+        </form>
+      </div>
+       <!-- All Filters button -->
+      <div class="dropdown" id="All filters">
+        <button type="button" class="info-button dropdown-toggle filter-button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+          All Filters
+        </button>
+        <!-- Dropdown Menu with Form -->
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li>
+            <form class="px-4 py-3" method="get" action="/student_search">
+              <!-- Preserve existing parameters for other filters -->
+              <% params.each do |key, value| %>
+                <% if key != "amenities" %>
+                  <% if value.is_a?(Array) %>
+                    <% value.each do |v| %>
+                      <input type="hidden" name="<%= key %>[]" value="<%= v %>">
+                    <% end %>
+                  <% else %>
+                    <input type="hidden" name="<%= key %>" value="<%= value %>">
+                  <% end %>
+                <% end %>
+              <% end %>
+              <!-- Amenities Checkboxes -->
+              <% amenity_options = {
+                "in_unit_washer_dryer" => "In Unit Washer & Dryer",
+                "air_conditioning" => "Air Conditioning",
+                "utilities_included" => "Utilities Included",
+                "dishwasher" => "Dishwasher",
+                "parking" => "Parking",
+                "pet_friendly" => "Pet-Friendly",
+                "furnished" => "Furnished"
+              } %>
+              <% amenity_options.each do |value, label| %>
+                <div class="form-check">
+                  <input class="form-check-input" 
+                        type="checkbox" 
+                        name="amenities[]" 
+                        value="<%= value %>" 
+                        id="<%= value %>" 
+                        <%= 'checked' if params[:amenities]&.include?(value) %>>
+                  <label class="form-check-label" for="<%= value %>">
+                    <%= label %>
+                  </label>
+                </div>
+              <% end %>
+              <button type="submit" class="generic-button mt-3">Submit</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+      <!-- Clear Filters Button -->
+      <form action="/student_search" method="get" class="d-flex align-items-center">
+        <button type="submit" class="info-button filter-button">
+          Clear
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
+<hr>
+
+<!-- cards to show available listings -->
+<div class = "listing-card-container">
+  <% @listings.each do |listing| %>
+    <div class="listing-card" style="width: 18rem;">
+      <% if listing.cover_image.attached? %>
+        <%= image_tag(listing.cover_image, class: "card-img") %>
+      <% else %>
+        <%= image_tag("house.jpg", class: "card-img") %>
+      <% end %>
+      <div class="card-body">
+        <h5 class="card-title">$<%= listing.rent_price.to_i %>/month</h5>
+        <p class="card-text"><%= listing.address %></p>
+      </div>
+      <hr>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Beds: <%= listing.bedroom %></li>
+        <li class="list-group-item">Baths: <%= listing.bathroom %> </li>
+        <li class="list-group-item">Availability: <%= listing.available %> </li>
+      </ul>
+      <div class="card-body">
+        <% if user_signed_in?%>
+          <%= link_to "View Listing",  listing, class: "generic-button d-block mx-auto"%>
+        <%end%>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<!-- Page navigation at the bottom -->
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <li class="page-item <%= 'disabled' unless @listings.prev_page %>">
+      <% if @listings.prev_page %>
+        <%= link_to 'Previous', url_for(params.permit(:search, :min_rent, :max_rent, :page, bedroom: [], bathroom: [], property_type: [], amenities: []).to_h.merge(page: @listings.prev_page)), class: "page-link" %>
+      <% else %>  
+        <span class="page-link">Previous</span>
+      <% end %>
+    </li>
+    <% (1..@listings.total_pages).each do |page| %>
+      <li class="page-item <%= 'active' if page == @listings.current_page %>">
+        <%= link_to page, url_for(params.permit(:search, :min_rent, :max_rent, :page, bedroom: [], bathroom: [], property_type: [], amenities: []).to_h.merge(page: page)), class: "page-link" %>
+      </li>
+    <% end %>
+    <li class="page-item <%= 'disabled' unless @listings.next_page %>">
+      <% if @listings.next_page %>
+        <%= link_to 'Next', url_for(params.permit(:search, :min_rent, :max_rent, :page, bedroom: [], bathroom: [], property_type: [], amenities: []).to_h.merge(page: @listings.next_page)), class: "page-link" %>
+      <% else %>
+        <span class="page-link">Next</span>
+      <% end %>
+    </li>
+  </ul>
+</nav>
+
+
+

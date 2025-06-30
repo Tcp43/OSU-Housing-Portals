@@ -1,0 +1,51 @@
+<%# Created 11/29/2024 by Koury Harmon: Dashboard for signed-in users %>
+<%# Edited 11/30/2024 by Koury Harmon: Output different information depending on user role %>
+<% provide(:title, "My Dashboard")%>
+<%# Welcome Jumbotron %>
+<div class="p-4 mb-4 border bg-body-tertiary">
+  <h1>Welcome, <%= @user.name%></h1>
+</div>
+<div class = "container justify-content-center">
+  <div class = "p-4 bg-light card text-center">
+    <%# Listing preview of favorites if user is a student%>
+    <%if current_user.student? %>
+      <h3 class="card-title">My Favorites</h3>
+      <hr />
+      <% if @favorites.any?%>
+        <% @favorites.first(3).each do |favorite| %>
+          <% listing = favorite.listing %>
+          <%= render listing %>
+        <% end %>
+      <%else%>
+        <p> No favorites available. </p>
+      <%end%>
+      <%= button_to "View Favorites", student_profile_path(current_user.id), method: :get, class: "btn btn-primary btn-lg" %>
+    <%else%>
+    <%# Listing preview of favorites if user is a landlord%>
+      <h3 class="card-title">My Listings</h3>
+      <hr />
+      <% if @listings.any?%>
+        <% @listings.first(3).each do |listing| %>
+          <%= render listing %>
+        <% end %>
+      <%else%>
+        <p> No listings available. </p>
+      <%end%>
+      <div class = "d-flex justify-content-center">
+        <%= button_to "View all Listings", landlord_profile_path(current_user.id), method: :get, class: "generic-button me-5" %>
+        <%= button_to '<i class="bi bi-plus-square"></i> Add Listing'.html_safe, new_listing_path, method: :get, class: "new-button" %>
+      </div>
+    <%end%>
+  </div>
+</div>
+<%# Button Menu %>
+<div class="container">
+  <%= button_to '<i class="bi bi-chat-dots"></i> View Chats'.html_safe, conversations_path, method: :get, class: "generic-button w-100 mt-4" %>
+  <%if current_user.student? %>
+    <%= button_to "Search for Listings", student_search_path, method: :get, class: "generic-button w-100 mt-4" %>
+    <%= button_to "My Profile", student_profile_path(current_user.id), method: :get, class: "generic-button w-100 mt-4"%>
+  <%else %>
+    <%= button_to "My Profile", landlord_profile_path(current_user.id), method: :get, class: "generic-button w-100 mt-4"%>
+  <%end%>
+</div>
+<br>

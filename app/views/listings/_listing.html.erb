@@ -1,0 +1,33 @@
+<%# Created 11/18/2024 by Koury Harmon: card partial to show individual listings %>
+<%# Edited 11/24/2024 by Koury Harmon: Added initial information for listing %>
+<%# Edited 11/27/2024 by Koury Harmon: Converted to bootstrap 5 %>
+<%# Edited 12/4/2024 by Koury Harmon: fixed issue with housing picture fetching %>
+<div id="<%= dom_id listing %>" class="card mb-3">
+  <div class="row g-0 ">
+    <div class="col-md-4">
+      <%# Displaying image for listing if it exists %>
+      <% if listing.cover_image.attached? %>
+        <%= image_tag(listing.cover_image, class: "img-fluid rounded-start h-100 w-100") %>
+      <% else %>
+        <%= image_tag("house.jpg", class: "card-img") %>
+      <% end %>
+    </div>
+    <%# Info for listing at a glance %>
+    <div class="col-md-8 d-flex align-items-center">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Address:</strong> <%= listing.address %></h5>
+        <p class="card-text">
+          <strong>Bedrooms:</strong> <%= listing.bedroom %><br>
+          <strong>Bathrooms:</strong> <%= listing.bathroom %><br>
+          <strong>Monthly Rent:</strong> $<%= listing.rent_price %>
+        </p>
+        <%# Only allows user to view if signed in %>
+        <% if !user_signed_in?%>
+          <%= link_to "Please sign in to view", new_user_session_path, class: "generic-button d-block mx-auto" %>
+        <%else%>
+          <%= link_to "View Listing",  listing, class: "generic-button d-block mx-auto"%>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>

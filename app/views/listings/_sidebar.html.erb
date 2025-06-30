@@ -1,0 +1,13 @@
+<div class="list-group">
+    <h4><%=@listing.name%></h4>
+    <%= link_to 'Step 1: <i class="bi bi-geo-alt"></i> Address'.html_safe, edit_step1_listing_path(@listing), 
+        class: "list-group-item list-group-item-action #{'active' if action_name == 'edit_step1'}" %>
+    <%= link_to 'Step 2: <i class="bi bi-house-door"></i> Property info'.html_safe, edit_step2_listing_path(@listing), 
+        class: "list-group-item list-group-item-action #{'active' if action_name == 'edit_step2'}" %> 
+    <%= link_to 'Step 3: <i class="bi bi-cash-coin"></i> Pricing'.html_safe, edit_step3_listing_path(@listing), 
+        class: "list-group-item list-group-item-action #{'active' if action_name == 'edit_step3'}" %>
+    <%= link_to 'Step 4: <i class="bi bi-calendar-week"></i> Lease'.html_safe, edit_step4_listing_path(@listing), 
+        class: "list-group-item list-group-item-action #{'active' if action_name == 'edit_step4'}" %>    
+    <%= link_to 'Step 5: <i class="bi bi-person-lines-fill"></i> Contact Info'.html_safe, edit_step5_listing_path(@listing), 
+        class: "list-group-item list-group-item-action #{'active' if action_name == 'edit_step5'}" %>       
+</div>
