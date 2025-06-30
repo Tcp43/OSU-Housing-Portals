@@ -154,6 +154,7 @@ Each test file within test/models ensures the proper validation of the correspon
 - **Troy Paschal**:
   - Design Student and Landlord profile pages including contact information.
   - Create a messaging interface for communication between students and landlord profile pages.
+  - Implement backend logic for landlords to post new listings (house/apartment) and store in the database.
 
 - **Kathir Maarikarthykeyan**:
   - Design Student view/page where students can post and view available property listings.
@@ -172,6 +173,8 @@ Each test file within test/models ensures the proper validation of the correspon
 - **Troy Paschal**:
   - Design page for user and landlord profile sections.
   - Design chat and messages interface where users and landlords could message each other about listings.
+  - Design the login pages for students and landlords.
+  - Handle backend logic for adding student and landlord user authentication for the login.
 
 - **Kathir Maarikarthykeyan**:
   - Design the Search/View homes page for students, displaying house cards and search/filter options.
@@ -266,13 +269,14 @@ Each test file within test/models ensures the proper validation of the correspon
   - All corresponding tests
 
 - Yuxi Lin:
-  - Implement sessions control including user sign in, sign up, edit, delete, email confirmation
+  - Implement sessions control including user sign up, edit, delete, email confirmation
   - Implement view and functionality for user to post a new listing
   - Test for above
 
 - Troy Paschal:
   - Implement controllers for users,conversations,favorites, and messages
   - Implement views for users,conversations,favorites, and messages
+  - Implement sessions control including user sign in
   - Test for above
 
 - Kathir Maarikarthykeyan:
