@@ -39,7 +39,7 @@ gem "letter_opener", group: :development
 # gem "image_processing", "~> 1.2"
 
 gem "devise", "~> 4.9", ">= 4.9.4"
-gem "bootstrap", "~> 5.2", ">= 5.2.3"
+gem "bootstrap", "~> 5.3"
 gem "sassc-rails"
 gem "faker"
 gem "csv"
